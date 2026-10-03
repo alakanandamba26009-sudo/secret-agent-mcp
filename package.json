@@ -1,9 +1,7 @@
 {
-  "name": "secret-agent-mcp",
+  "name": "gnani-voice-mcp",
   "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
-    "express": "^4.21.0"
-  }
+  "private": true,
+  "description": "MCP server wrapping Gnani (Vachana) STT/TTS for AgenticOrg",
+  "engines": { "node": ">=18" }
 }

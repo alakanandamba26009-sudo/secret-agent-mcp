@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/mcp", "destination": "/api/mcp" },
+    { "source": "/api/audio/:p/:s", "destination": "/api/audio" }
+  ],
+  "functions": {
+    "api/*.js": { "maxDuration": 60 }
+  }
+}
