@@ -71,12 +71,11 @@ async function callTool(name, args, req) {
       format: args?.format || "mp3",
     };
     // Real Gnani call now, so errors surface to the agent immediately.
-    const { audio, mime, ext } = await synthesize(p);
+    
     const { payload, sig } = makeAudioToken(p);
     return {
-      audio_url: `${baseUrl(req)}/api/audio/${payload}/${sig}.${ext}`,
-      mime_type: mime,
-      bytes: audio.length,
+      audio_url: `${baseUrl(req)}/api/audio/${payload}/${sig}.${FORMATS[p.format].ext}`,
+mime_type: FORMATS[p.format].mime,
       voice: p.voice,
       language: p.language,
     };
