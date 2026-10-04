@@ -37,7 +37,7 @@ const TOOLS = [
       properties: {
         text: { type: "string", description: "Text to speak (max 1500 characters)." },
         language: { type: "string", enum: LANGS, default: "en-IN", description: "Language code. hi-en = Hinglish." },
-        voice: { type: "string", default: "Jwala", description: "Gnani voice name, e.g. Nalini, Kaveri, Jwala, Deepak, Poorvi." },
+        voice: { type: "string", default: "Jwala", description: "Gnani voice name, e.g. Nalini, Kaveri,jwala, Deepak, Poorvi." },
         speed: { type: "number", default: 1.0, minimum: 0.85, maximum: 1.15 },
         format: {
           type: "string",
@@ -75,7 +75,7 @@ async function callTool(name, args, req) {
     const { payload, sig } = makeAudioToken(p);
     return {
       audio_url: `${baseUrl(req)}/api/audio/${payload}/${sig}.${FORMATS[p.format].ext}`,
-      mime_type: FORMATS[p.format].mime,
+mime_type: FORMATS[p.format].mime,
       voice: p.voice,
       language: p.language,
     };
