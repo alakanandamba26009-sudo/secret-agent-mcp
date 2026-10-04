@@ -2,6 +2,7 @@
 // exposing Gnani speech-to-text and text-to-speech as tools.
 const { speechToText, synthesize, makeAudioToken, FORMATS } = require("../lib/gnani");
 
+
 const SERVER_INFO = { name: "gnani-voice-mcp", version: "1.0.0" };
 const SUPPORTED_VERSIONS = ["2025-06-18", "2025-03-26", "2024-11-05"];
 const LANGS = ["en-IN", "hi-IN", "hi-en", "ta-IN", "te-IN", "kn-IN", "ml-IN", "mr-IN", "pa-IN", "bn-IN", "gu-IN"];
@@ -36,7 +37,7 @@ const TOOLS = [
       properties: {
         text: { type: "string", description: "Text to speak (max 1500 characters)." },
         language: { type: "string", enum: LANGS, default: "en-IN", description: "Language code. hi-en = Hinglish." },
-        voice: { type: "string", default: "Nalini", description: "Gnani voice name, e.g. Nalini, Kaveri, Deepak, Poorvi." },
+        voice: { type: "string", default: "Jwala", description: "Gnani voice name, e.g. Nalini, Kaveri,jwala, Deepak, Poorvi." },
         speed: { type: "number", default: 1.0, minimum: 0.85, maximum: 1.15 },
         format: {
           type: "string",
@@ -64,7 +65,7 @@ async function callTool(name, args, req) {
   if (name === "text_to_speech") {
     const p = {
       text: args?.text,
-      voice: args?.voice || "Nalini",
+      voice: args?.voice || "Jwala",
       language: args?.language || "en-IN",
       speed: args?.speed ?? 1.0,
       format: args?.format || "mp3",
