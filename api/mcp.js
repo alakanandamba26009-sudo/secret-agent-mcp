@@ -31,15 +31,14 @@ const TOOLS = [
     name: "text_to_speech",
     description:
       "Convert the agent's reply text to speech with Gnani (Vachana) TTS. Returns a public audio_url " +
-      "that can be sent to the user (e.g. as a Telegram/WhatsApp voice note or audio file). " +
-      "Use the default Yashvi voice for a softer conversational delivery unless another voice is explicitly requested.",
+      "that can be sent to the user (e.g. as a Telegram/WhatsApp voice note or audio file).",
     inputSchema: {
       type: "object",
       properties: {
         text: { type: "string", description: "Text to speak (max 1500 characters)." },
         language: { type: "string", enum: LANGS, default: "en-IN", description: "Language code. hi-en = Hinglish." },
-        voice: { type: "string", default: "Yashvi", description: "Gnani voice name. Default Yashvi for a softer conversational delivery." },
-        speed: { type: "number", default: 0.95, minimum: 0.85, maximum: 1.15 },
+        voice: { type: "string", default: "Jwala", description: "Gnani voice name, e.g. Nalini, Kaveri, Jwala, Deepak, Poorvi." },
+        speed: { type: "number", default: 1.0, minimum: 0.85, maximum: 1.15 },
         format: {
           type: "string",
           enum: Object.keys(FORMATS),
@@ -66,9 +65,9 @@ async function callTool(name, args, req) {
   if (name === "text_to_speech") {
     const p = {
       text: args?.text,
-      voice: args?.voice || "Yashvi",
+      voice: args?.voice || "Jwala",
       language: args?.language || "en-IN",
-      speed: args?.speed ?? 0.95,
+      speed: args?.speed ?? 1.0,
       format: args?.format || "mp3",
     };
     // Real Gnani call now, so errors surface to the agent immediately.
